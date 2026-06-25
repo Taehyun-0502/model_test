@@ -1,26 +1,30 @@
-#version: '3.8' # 도커 컴포즈 파일 형식의 버전을 지정합니다.
-
 services:
   # 1. 프론트엔드 서비스
   react-app:
-    build: ./model-front               # GitHub Actions가 빌드할 소스코드 폴더 경로
-    image: taehyun05/react-app:latest   # 👈 추가: 빌드가 끝나면 도커 허브에 이 이름으로 저장하라는 뜻
+    build: ./model-front
+    image: taehyun05/react-app:latest
+    container_name: react-app
     ports:
       - "80:80"
-    restart: always
+    depends_on:
+      - container-spring
+      - fastapi-app
+    restart: unless-stopped
 
   # 2. 메인 자바 백엔드 서비스
-  spring-app:
-    build: ./model-api/app             # GitHub Actions가 빌드할 소스코드 폴더 경로
-    image: taehyun05/spring-app:latest  # 👈 추가: 빌드가 끝나면 도커 허브에 이 이름으로 저장하라는 뜻
+  container-spring:
+    build: ./model-api/app
+    image: taehyun05/test:model_app-spring-app
+    container_name: container-spring
     ports:
       - "8080:8080"
-    restart: always
+    restart: unless-stopped
 
   # 3. 파이썬 AI/데이터 백엔드 서비스
   fastapi-app:
-    build: ./model_test/model_app      # GitHub Actions가 빌드할 소스코드 폴더 경로
-    image: taehyun05/fastapi-app:latest # 👈 추가: 빌드가 끝나면 도커 허브에 이 이름으로 저장하라는 뜻
+    build: ./model_test/model_app
+    image: taehyun05/test:model_app-fastapi-app
+    container_name: container-fastapi-app
     ports:
       - "8000:8000"
-    restart: always
+    restart: unless-stopped

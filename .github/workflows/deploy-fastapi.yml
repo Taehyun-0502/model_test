@@ -25,8 +25,8 @@ jobs:
       # 3. FastAPI 이미지 빌드 및 푸시
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-app:latest ./model_test/model_app
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-app:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test:model_app-fastapi-app ./model_test/model_app
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:model_app-fastapi-app
 
       # 4. EC2에 접속하여 FastAPI 컨테이너만 쏙 교체
       - name: SSH Remote Commands

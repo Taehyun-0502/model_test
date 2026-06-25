@@ -25,8 +25,8 @@ jobs:
       # 3. Spring Boot 멀티 스테이지 이미지 빌드 및 푸시 (Gradle 빌드 자동 포함)
       - name: Build and Push Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/spring-app:latest ./model-api/app
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/spring-app:latest
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test:model_app-spring-app ./model-api/app
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/test:model_app-spring-app
 
       # 4. EC2에 접속하여 Spring Boot 컨테이너만 쏙 교체
       - name: SSH Remote Commands
@@ -37,5 +37,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /home/ubuntu/model_app
-            sudo docker compose pull spring-app
-            sudo docker compose up -d spring-app
+            sudo docker compose pull container-spring
+            sudo docker compose up -d container-spring
