@@ -20,7 +20,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       # 3. Spring Boot 멀티 스테이지 이미지 빌드 및 푸시 (Gradle 빌드 자동 포함)
       - name: Build and Push Docker Image
