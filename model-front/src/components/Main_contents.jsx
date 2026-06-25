@@ -8,7 +8,7 @@ function Main_contents() {
             {/* 히어로 섹션 */}
             <div className="main-hero">
                 <div className="hero-badge">
-                    🌲 자동으로 바꾸기 · 자연을 닮은 예측 서비스
+                    🌲 테스트로 바꾸기
                 </div>
                 <h1>
                     데이터가 피어나는<br />
