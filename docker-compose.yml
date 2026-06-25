@@ -1,0 +1,23 @@
+#version: '3.8' # 도커 컴포즈 파일 형식의 버전을 지정합니다.
+
+services:
+  # 1. 프론트엔드 서비스
+  react-app:
+    build: ./model-front       # model-front 폴더 안의 Dockerfile을 찾아가서 빌드해라
+    ports:
+      - "80:80"              # 외부의 80번 포트 요청을 컨테이너의 80번(Nginx) 포트로 연결
+    restart: always          # 서버가 예기치 않게 죽으면 자동으로 다시 켜라
+
+  # 2. 메인 자바 백엔드 서비스
+  spring-app:
+    build: ./model-api/app      # model-api/app 폴더 안의 Dockerfile을 찾아가서 빌드해라
+    ports:
+      - "8080:8080"          # 외부의 8080 포트를 컨테이너 8080 포트와 매핑
+    restart: always
+
+  # 3. 파이썬 AI/데이터 백엔드 서비스
+  fastapi-app:
+    build: ./model_test/model_app     # model_test/model_app 폴더 안의 Dockerfile을 찾아가서 빌드해라
+    ports:
+      - "8000:8000"          # 외부의 8000 포트를 컨테이너 8000 포트와 매핑
+    restart: always

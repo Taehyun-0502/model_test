@@ -1,0 +1,41 @@
+name: Deploy React to EC2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'model-front/**' # 오직 model-front 폴더 안의 소스가 바뀔 때만 실행
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 소스코드 가져오기
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. 도커 허브 로그인
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. React 멀티 스테이지 이미지 빌드 및 푸시
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest ./model-front
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/react-app:latest
+
+      # 4. EC2에 접속하여 React 컨테이너만 쏙 교체
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd /home/ubuntu/app
+            sudo docker compose pull react-app
+            sudo docker compose up -d react-app

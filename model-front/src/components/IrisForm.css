@@ -1,0 +1,300 @@
+/* ============================================================
+   IrisForm.css — Forest AI · 붓꽃 분류 폼
+   포레스트 테마 · 모바일 퍼스트
+   ============================================================ */
+
+/* ── 페이지 컨테이너 ── */
+.iris-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 16px 60px;
+  min-height: calc(100dvh - 60px);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@media (min-width: 768px) {
+  .iris-form-container {
+    padding: 48px 24px 80px;
+    justify-content: center;
+  }
+}
+
+/* ── 카드 ── */
+.iris-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 28px 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: var(--shadow);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+@media (min-width: 480px) {
+  .iris-card {
+    padding: 36px 32px;
+  }
+}
+
+@media (min-width: 768px) {
+  .iris-card {
+    padding: 44px 40px;
+  }
+}
+
+/* 카드 상단 포인트 그라데이션 라인 */
+.iris-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--forest-deep),
+    var(--forest-sage),
+    var(--forest-mist)
+  );
+  background-size: 200% auto;
+  animation: shimmer 4s linear infinite;
+}
+
+/* 배경 장식 원 */
+.iris-card::after {
+  content: '🌿';
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 80px;
+  opacity: 0.04;
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+
+/* ── 타이틀 ── */
+.iris-title {
+  font-family: var(--heading);
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 6px;
+  color: var(--text-h);
+  text-align: center;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.iris-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+@media (min-width: 480px) {
+  .iris-subtitle {
+    margin-bottom: 36px;
+  }
+}
+
+/* ── 섹션 구분선 ── */
+.form-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.form-divider::before,
+.form-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+/* ── 그리드 ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 480px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+}
+
+/* ── 입력 그룹 ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-h);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── 인풋 래퍼 ── */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* ── 인풋 필드 ── */
+.form-control {
+  width: 100%;
+  padding: 12px 48px 12px 14px;
+  font-size: 15px;
+  font-family: var(--sans);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-input);
+  color: var(--text-h);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.form-control:hover {
+  border-color: var(--accent2);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 3px var(--accent-bg), 0 2px 8px rgba(61, 107, 65, 0.08);
+}
+
+/* ── 단위 라벨 ── */
+.unit-label {
+  position: absolute;
+  right: 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  pointer-events: none;
+  background: var(--bg-subtle);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-light);
+}
+
+/* ── 제출 버튼 ── */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: var(--sans);
+  color: var(--text-on-accent);
+  background: linear-gradient(135deg,
+    var(--forest-deep) 0%,
+    var(--forest-mid) 50%,
+    var(--forest-sage) 100%
+  );
+  background-size: 200% auto;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(45, 74, 48, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+
+.submit-btn:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 74, 48, 0.32);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(45, 74, 48, 0.20);
+}
+
+/* ── 결과 카드 ── */
+.iris-result-card {
+  margin-top: 28px;
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  animation: fadeIn 0.5s ease-out;
+  border: 1.5px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.iris-result-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 0;
+}
+
+.iris-result-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.iris-result-species {
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.iris-result-desc {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.65;
+}

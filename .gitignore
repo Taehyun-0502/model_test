@@ -1,0 +1,54 @@
+# Python Virtual Environment
+/model_test/*
+!/model_test/model_app/
+
+# Tar / Backup Files
+*.tar
+*.zip
+*.tar.gz
+
+# IDE and Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Node / Frontend (model-front)
+**/node_modules/
+**/dist/
+**/.eslintcache
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/.pnpm-debug.log*
+
+# Gradle / Java / Spring (model-api)
+**/.gradle/
+**/build/
+!**/src/main/resources/gradle
+
+# OS / System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python Cache & Temp Files
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.pytest_cache/
+**/.tox/
+**/.coverage
+
+# Project Specific Ignored Files (Optional/Auto-generated)
+**/HELP.md
+model-front/README.md
+model-api/app/.gitignore
+model-front/.gitignore
+model-api/app/gradlew.bat
+
+**/htmlcov/
