@@ -8,7 +8,7 @@ function Main_contents() {
             {/* 히어로 섹션 */}
             <div className="main-hero">
                 <div className="hero-badge">
-                    🌲 테스트로 바꾸기
+                    🌲 테스트로 바꾸기 232321
                 </div>
                 <h1>
                     데이터가 피어나는<br />
